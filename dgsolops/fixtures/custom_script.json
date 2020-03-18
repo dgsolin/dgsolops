@@ -1,0 +1,46 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Custom Script",
+  "dt": "Quotation",
+  "modified": "2020-03-15 17:12:56.839577",
+  "name": "Quotation-Client",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "script": "frappe.ui.form.on('Quotation', {\n\trefresh(frm) {\n\t\t// your code here\n\t\tfrm.events.system(frm);\n\t},\n\tsystem(frm) {\n\t\tif(frm.fields_dict['items'].grid.get_field('item_code')) {\n\t\t\tif(frm.doc.system != 'DIPL') {\n\t\t\t\tfrm.set_query(\"item_code\", \"items\", function() {\n\t\t\t\t\treturn {\n\t\t\t\t\t\tquery: \"erpnext.controllers.queries.item_query\",\n\t\t\t\t\t\tfilters: {'is_sales_item': 1,'item_group': frm.doc.system}\n\t\t\t\t\t};\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tfrm.set_query(\"item_code\", \"items\", function() {\n\t\t\t\t\treturn {\n\t\t\t\t\t\tquery: \"erpnext.controllers.queries.item_query\",\n\t\t\t\t\t\tfilters: {'is_sales_item': 1}\n\t\t\t\t\t};\n\t\t\t\t});\n\t\t\t}\n\t\t}\n\t}\n});\n\n"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Custom Script",
+  "dt": "Sales Order",
+  "modified": "2020-03-17 02:04:57.959892",
+  "name": "Sales Order-Client",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "script": "frappe.ui.form.on('Sales Order', {\n\trefresh(frm) {\n\t\t// your code here\n\t\tfrm.events.system(frm);\n\t},\n\tsystem(frm) {\n\t\tif(frm.fields_dict['items'].grid.get_field('item_code')) {\n\t\t\tif(frm.doc.system != 'DIPL') {\n\t\t\t\tfrm.set_query(\"item_code\", \"items\", function() {\n\t\t\t\t\treturn {\n\t\t\t\t\t\tquery: \"erpnext.controllers.queries.item_query\",\n\t\t\t\t\t\tfilters: {'is_sales_item': 1,'item_group': frm.doc.system}\n\t\t\t\t\t};\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tfrm.set_query(\"item_code\", \"items\", function() {\n\t\t\t\t\treturn {\n\t\t\t\t\t\tquery: \"erpnext.controllers.queries.item_query\",\n\t\t\t\t\t\tfilters: {'is_sales_item': 1}\n\t\t\t\t\t};\n\t\t\t\t});\n\t\t\t}\n\t\t}\n\t\t// make ord_ref field Mandatory if  frm.doc.system != 'DIPL'\n\t\tfrm.set_df_property('order_ref',  'reqd',  frm.doc.system == 'DIPL' ? 0 : 1);\n\t}\n});"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Custom Script",
+  "dt": "Sales Invoice",
+  "modified": "2020-03-17 02:27:31.209886",
+  "name": "Sales Invoice-Client",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "script": "frappe.ui.form.on('Sales Invoice', {\n\trefresh(frm) {\n\t\t// your code here\n\t\tfrm.events.system(frm);\n\t},\n\tsystem(frm) {\n\t\tif(frm.fields_dict['items'].grid.get_field('item_code')) {\n\t\t\tif(frm.doc.system != 'DIPL') {\n\t\t\t\tfrm.set_query(\"item_code\", \"items\", function() {\n\t\t\t\t\treturn {\n\t\t\t\t\t\tquery: \"erpnext.controllers.queries.item_query\",\n\t\t\t\t\t\tfilters: {'is_sales_item': 1,'item_group': frm.doc.system}\n\t\t\t\t\t};\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tfrm.set_query(\"item_code\", \"items\", function() {\n\t\t\t\t\treturn {\n\t\t\t\t\t\tquery: \"erpnext.controllers.queries.item_query\",\n\t\t\t\t\t\tfilters: {'is_sales_item': 1}\n\t\t\t\t\t};\n\t\t\t\t});\n\t\t\t}\n\t\t}\n\t\t// make ord_ref field Mandatory if  frm.doc.system != 'DIPL'\n\t\tfrm.set_df_property('order_ref',  'reqd',  frm.doc.system == 'DIPL' ? 0 : 1);\n\t\tfrm.set_df_property('transaction_ref',  'reqd',  frm.doc.system == 'DIPL' ? 0 : 1);\n\t\tfrm.set_df_property('billing_ref',  'reqd',  frm.doc.system == 'DIPL' ? 0 : 1);\n\t}\n});\n\n"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Custom Script",
+  "dt": "Purchase Invoice",
+  "modified": "2020-03-18 19:14:38.525617",
+  "name": "Purchase Invoice-Client",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "script": "frappe.ui.form.on('Purchase Invoice', {\n\trefresh(frm) {\n\t\t// your code here\n\t\tfrm.events.system(frm);\n\t},\n\tsystem(frm) {\n\t\tif(frm.fields_dict['items'].grid.get_field('item_code')) {\n\t\t\tif(frm.doc.system != 'DIPL') {\n\t\t\t\tfrm.set_query(\"item_code\", \"items\", function() {\n\t\t\t\t\treturn {\n\t\t\t\t\t\tquery: \"erpnext.controllers.queries.item_query\",\n\t\t\t\t\t\tfilters: {'is_purchase_item': 1,'item_group': frm.doc.system}\n\t\t\t\t\t};\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tfrm.set_query(\"item_code\", \"items\", function() {\n\t\t\t\t\treturn {\n\t\t\t\t\t\tquery: \"erpnext.controllers.queries.item_query\",\n\t\t\t\t\t\tfilters: {'is_purchase_item': 1}\n\t\t\t\t\t};\n\t\t\t\t});\n\t\t\t}\n\t\t}\n\t\t// make ord_ref field Mandatory if  frm.doc.system != 'DIPL'\n\t\tfrm.set_df_property('order_ref',  'reqd',  frm.doc.system == 'DIPL' ? 0 : 1);\n\t\tfrm.set_df_property('transaction_ref',  'reqd',  frm.doc.system == 'DIPL' ? 0 : 1);\n\t\tfrm.set_df_property('bill_no',  'reqd',  frm.doc.system == 'DIPL' ? 0 : 1);\n\t\tfrm.set_df_property('bill_date',  'reqd',  frm.doc.system == 'DIPL' ? 0 : 1);\n\t\tfrm.set_df_property('system_reference',  'hidden',  frm.doc.system == 'DIPL' ? 1 : 0);\n\t}\n});"
+ }
+]

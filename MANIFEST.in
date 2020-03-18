@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include dgsolops *.css
+recursive-include dgsolops *.csv
+recursive-include dgsolops *.html
+recursive-include dgsolops *.ico
+recursive-include dgsolops *.js
+recursive-include dgsolops *.json
+recursive-include dgsolops *.md
+recursive-include dgsolops *.png
+recursive-include dgsolops *.py
+recursive-include dgsolops *.svg
+recursive-include dgsolops *.txt
+recursive-exclude dgsolops *.pyc
