@@ -11,8 +11,8 @@ from frappe import _
 import frappe.defaults
 from erpnext.accounts.utils import get_fiscal_year
 
-def get_fy_abbr(tr_date,company):
-	fy = get_fiscal_year(tr_date, company)[0]
+def get_fy_abbr(date,company):
+	fy = get_fiscal_year(date, company)[0]
 	fy_start_end_date = frappe.db.get_value("Fiscal Year", str(fy), ["year_start_date","year_end_date"])
 
 	fy_start_year = fy_start_end_date[0].year
@@ -44,7 +44,7 @@ def si_autoname(self, method):
 		self.name = make_autoname(head_abbr + fy_abbr +'/.#####')
 
 def pi_autoname(self, method):
-	fy_abbr = get_fy_abbr(self.posting_date,self.company)
+	fy_abbr = get_fy_abbr(self.posting_date, self.company)
 	doc_cmpny = frappe.db.get_value("Company", self.company, "abbr")
 
 	if self.is_return:
