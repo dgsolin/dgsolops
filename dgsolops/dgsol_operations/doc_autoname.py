@@ -69,3 +69,11 @@ def pe_autoname(self, method):
 
 	self.name = make_autoname(head_abbr + fy_abbr +'/.#####')
 
+def dn_autoname(self, method):
+	fy_abbr = get_fy_abbr(self.posting_date,self.company)
+	doc_cmpny = frappe.db.get_value("Company", self.company, "abbr")
+
+	head_abbr = "DC/"
+
+	self.name = make_autoname(head_abbr + fy_abbr +'/.#####')
+
