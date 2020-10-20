@@ -1,0 +1,79 @@
+{%- if doc.rounded_total == 0 -%}
+	<div class="row  data-field" data-fieldname="grand_total" data-fieldtype="Currency">
+		<div class="col-xs-5">
+			<label>Total Payable</label>
+		</div>
+		<div class="col-xs-7 text-right value">
+			{{ doc.get_formatted("grand_total") }}
+		</div>
+	</div>
+{%- else -%}
+	<div class="row  data-field" data-fieldname="grand_total" data-fieldtype="Currency">
+		<div class="col-xs-5">
+			<label>Grand Total</label>
+		</div>
+		<div class="col-xs-7 text-right value">
+			{{ doc.get_formatted("grand_total") }}
+		</div>
+	</div>
+	<div class="row  data-field" data-fieldname="rounding_adjustment" data-fieldtype="Currency">
+		<div class="col-xs-5">
+			<label>Adjustments</label>
+		</div>
+		<div class="col-xs-7 text-right value">
+			{{ doc.get_formatted("rounding_adjustment") }}
+		</div>
+	</div>
+	<div class="row  data-field" data-fieldname="rounded_total" data-fieldtype="Currency">
+		<div class="col-xs-5">
+			<label>Total Payable</label>
+		</div>
+		<div class="col-xs-7 text-right value">
+			{{ doc.get_formatted("rounded_total") }}
+		</div>
+	</div>
+{%- endif -%}
+
+
+
+<div class="row  data-field" data-fieldname="grand_total" data-fieldtype="Currency">
+	<div class="col-xs-5">
+		<label>Grand Total</label>
+	</div>
+	<div class="col-xs-7 text-right value">
+		{{ doc.get_formatted("grand_total") }}
+	</div>
+</div>
+<div class="row  data-field" data-fieldname="rounding_adjustment" data-fieldtype="Currency">
+	<div class="col-xs-5">
+		<label>Adjustments</label>
+	</div>
+	<div class="col-xs-7 text-right value">
+		{{ doc.get_formatted("rounding_adjustment") }}
+	</div>
+</div>
+<div class="row  data-field" data-fieldname="rounded_total" data-fieldtype="Currency">
+	<div class="col-xs-5">
+		<label>Total Payable</label>
+	</div>
+	<div class="col-xs-7 text-right value">
+		{{ doc.get_formatted("rounded_total") }}
+	</div>
+</div>
+
+
+      {%- if doc.system != "DIPL" -%}
+        <br><strong>{{ doc.system }} Reference</strong><br>
+        <div class="row">
+          <div class="col-xs-5">Order Reference: </div>
+          <div class="col-xs-7">{{ doc.order_ref }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-5">Transaction Reference: </div>
+          <div class="col-xs-7">{{ doc.transaction_ref }}</div>
+        </div>
+	  {%- endif -%}      
+	  
+<div>
+	
+</div>
