@@ -97,7 +97,7 @@ doc_events = {
 	"Purchase Invoice": {
 		"autoname": "dgsolops.dgsol_operations.doc_autoname.pi_autoname"
 	},
-	"Purchase Entry": {
+	"Payment Entry": {
 		"autoname": "dgsolops.dgsol_operations.doc_autoname.pe_autoname"
 	},
 }
