@@ -1,5 +1,33 @@
 [
  {
+  "absolute_value": 0,
+  "align_labels_right": 1,
+  "css": null,
+  "custom_format": 0,
+  "default_print_language": "en-US",
+  "disabled": 0,
+  "doc_type": "Sales Invoice",
+  "docstatus": 0,
+  "doctype": "Print Format",
+  "font": "Default",
+  "format_data": null,
+  "html": "",
+  "line_breaks": 1,
+  "modified": "2020-10-23 19:54:40.634936",
+  "module": "Accounts",
+  "name": "GST E-Invoice",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "print_format_builder": 0,
+  "print_format_type": "Jinja",
+  "raw_commands": null,
+  "raw_printing": 0,
+  "show_section_headings": 1,
+  "standard": "Yes"
+ },
+ {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 0,
@@ -26,6 +54,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 1,
   "css": "",
   "custom_format": 0,
@@ -52,6 +81,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 1,
@@ -78,6 +108,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 1,
@@ -104,6 +135,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 1,
@@ -130,6 +162,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 0,
@@ -156,6 +189,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 0,
@@ -182,6 +216,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 1,
@@ -208,6 +243,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 1,
@@ -234,6 +270,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 1,
@@ -260,6 +297,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 0,
@@ -286,6 +324,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 1,
@@ -312,6 +351,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 0,
@@ -338,6 +378,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 0,
@@ -364,6 +405,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 0,
@@ -390,6 +432,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 0,
@@ -416,6 +459,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 0,
@@ -442,6 +486,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 0,
@@ -468,6 +513,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 0,
@@ -494,6 +540,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 0,
@@ -520,6 +567,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 1,
   "css": null,
   "custom_format": 0,
@@ -546,6 +594,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 1,
   "css": null,
   "custom_format": 0,
@@ -572,6 +621,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": "",
   "custom_format": 1,
@@ -598,6 +648,7 @@
   "standard": "No"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 1,
@@ -624,6 +675,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 1,
@@ -650,6 +702,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 0,
@@ -676,6 +729,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 0,
@@ -702,6 +756,7 @@
   "standard": "Yes"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 1,
   "css": "",
   "custom_format": 0,
@@ -728,6 +783,7 @@
   "standard": "No"
  },
  {
+  "absolute_value": 0,
   "align_labels_right": 0,
   "css": null,
   "custom_format": 0,

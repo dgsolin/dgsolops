@@ -1,6 +1,38 @@
 [
  {
   "default_value": null,
+  "doc_type": "Employee",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "naming_series",
+  "modified": "2021-03-26 13:02:23.073184",
+  "name": "Employee-naming_series-options",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "property": "options",
+  "property_type": "Text",
+  "value": "HR-EMP-"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Purchase Receipt",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "naming_series",
+  "modified": "2021-03-26 13:02:42.109479",
+  "name": "Purchase Receipt-naming_series-options",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "property": "options",
+  "property_type": "Text",
+  "value": "MAT-PRE-.YYYY.-"
+ },
+ {
+  "default_value": null,
   "doc_type": "Supplier",
   "docstatus": 0,
   "doctype": "Property Setter",
