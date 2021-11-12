@@ -110,7 +110,7 @@ doc_events = {
 		"autoname": "dgsolops.dgsol_operations.doc_autoname.ste_autoname"
 	},
 	"Delivery Note": {
-		"autoname": "dgsolops.dgsol_operations.doc_autoname.dn_autoname"
+		"autoname": "dgsolops.dgsol_operations.doc_autoname.dc_autoname"
 	},
 	"Purchase Receipt": {
 		"autoname": "dgsolops.dgsol_operations.doc_autoname.pre_autoname"
