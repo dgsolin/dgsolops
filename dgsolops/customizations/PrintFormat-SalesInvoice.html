@@ -1,0 +1,111 @@
+<style>
+    .print-format table, .print-format tr, 
+    .print-format td, .print-format div, .print-format p {
+        font-family: Monospace;
+        line-height: 200%;
+        vertical-align: middle;
+    }
+    @media screen { 
+        .print-format { 
+            width: 4in; 
+            padding: 0.25in;
+            min-height: 8in;
+        }
+    }
+</style>
+
+<p class=\"text-center\">
+    {{ company }}<br> 
+    {{  __(\"POS No : \") }} {{ offline_pos_name }}<br>
+</p>
+<p>
+    <b>{{ __(\"Customer\") }}:</b> {{ customer }}<br>
+</p>
+    
+<p>
+    <b>{{ __(\"Date\") }}:</b> {{ dateutil.global_date_format(posting_date) }}<br>
+</p>
+    
+<hr>
+<table class=\"table table-condensed cart no-border\">
+    <thead>
+        <tr>
+            <th width=\"50%\">{{ __(\"Item\") }}</b></th>
+            <th width=\"25%\" class=\"text-right\">{{ __(\"Qty\") }}</th>
+            <th width=\"25%\" class=\"text-right\">{{ __(\"Amount\") }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr>
+            <td>
+                {{ item.item_name }}
+            </td>
+            <td class=\"text-right\">{{ format_number(item.qty, null,precision(\"difference\")) }}<br>@ {{ format_currency(item.rate, currency) }}</td>
+            <td class=\"text-right\">{{ format_currency(item.amount, currency) }}</td>
+        </tr>{% endfor %}
+    </tbody>
+</table>
+
+<table class=\"table table-condensed no-border\">
+    <tbody>
+        <tr>
+            <td class=\"text-right\" style=\"width: 70%\">
+                {{ __(\"Net Total\") }}
+            </td>
+            <td class=\"text-right\">
+                {{ format_currency(total, currency) }}
+            </td>
+        </tr>
+        {% for row in taxes %}
+        {% if not row.included_in_print_rate %}
+        <tr>
+            <td class=\"text-right\" style=\"width: 70%\">
+                {{ row.description }}
+            </td><td class=\"text-right\">
+            {{ format_currency(row.tax_amount, currency) }}
+            </td></tr>
+        {% endif %}
+        {% endfor %}
+        {% if discount_amount %}
+        <tr>
+            <td class=\"text-right\" style=\"width: 75%\">
+                {{ __(\"Discount\") }}
+            </td>
+            <td class=\"text-right\">
+                {{ format_currency(discount_amount, currency) }}
+            </td>
+        </tr>
+        {% endif %}
+        <tr>
+            <td class=\"text-right\" style=\"width: 75%\">
+                <b>{{ __(\"Grand Total\") }}</b>
+            </td>
+            <td class=\"text-right\">
+                {{ format_currency(grand_total, currency) }}
+            </td>
+        </tr>
+        <tr>
+            <td class=\"text-right\" style=\"width: 75%\">
+                <b>{{ __(\"Paid Amount\") }}</b>
+            </td>
+            <td class=\"text-right\">
+                {{ format_currency(paid_amount, currency) }}
+            </td>
+        </tr>
+        <tr>
+            <td class=\"text-right\" style=\"width: 75%\">
+                <b>{{ __(\"Qty Total\") }}</b>
+            </td>
+            <td class=\"text-right\">
+                {{ qty_total }}
+            </td>
+        </tr>
+    </tbody>
+    </table>
+    
+    
+    <hr>
+    <p>{{ terms }}</p>
+    <p class=\"text-center\">{{ __(\"Thank you, please visit again.\") }}</p>
+    

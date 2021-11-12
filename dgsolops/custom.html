@@ -1,0 +1,83 @@
+<!-- Sales Invoice - Heading -->
+<div>
+  <div class="row">
+    <div class="col-xs-4">
+      <div class="row">
+        <div class="col-xs-5">Inv No: </div>
+        <div class="col-xs-7"><strong>{{ doc.name }}</strong></div>
+      </div>
+      <div class="row">
+        <div class="col-xs-5">Inv Date:</div>
+        <div class="col-xs-7">{{ doc.get_formatted('posting_date') }}</div>
+      </div>
+    </div>
+    <div class="col-xs-4 text-center">
+      <span style="font-size: 1.8em; font-variant: small-caps">TAX INVOICE</span><br>
+      <small>{{ doc.invoice_copy }}</small>
+    </div>
+    <div class="col-xs-4">
+      <div class="row">
+        <div class="col-xs-5">Inv Value:</div>
+        <div class="col-xs-7"><strong>{{ doc.get_formatted('grand_total') }}</strong></div>
+      </div>
+      <div class="row">
+        <div class="col-xs-5">Reference: </div>
+        <div class="col-xs-7">{{ doc.billing_ref }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+
+<!-- Sales Invoice - Customer Details -->
+<div>
+  <div class="row">
+    <div class="col-xs-6">
+      <strong>Bill To: </strong><br>
+      <span style="font-size: 1.2em;font-weight:700;">
+        {{ doc.customer }}
+      </span><br>
+      {{ doc.address_display }}
+    </div>
+    <div class="col-xs-6">
+      <strong>Ship To: </strong><br><br>
+      {{ doc.shipping_address }}
+    </div>
+  </div>
+  <div><br></div>
+  <div class="row">
+    <div class="col-xs-3">
+      <strong>Kind Attn: </strong><br>
+      {{ doc.contact_display }}
+    </div>
+    <div class="col-xs-3">
+      <strong>Customer GSTIN: </strong><br>
+      {{ doc.customer_gstin if doc.customer_gstin else "Unregistered" }}
+    </div>
+    <div class="col-xs-3">
+      <strong>Place of Supply: </strong><br>
+      {{ doc.place_of_supply }}
+    </div>
+    <div class="col-xs-3">
+      <strong>Reverse Charge: </strong><br>
+      {{ doc.reverse_charge }}
+    </div>
+  </div>
+</div>
+
+
+<!-- Sales Invoice - Decleration -->
+<div class="row">
+  <div class="col-xs-8">
+    <strong>Deceleration:</strong>
+    <ol>
+      <li>I/We declares that this invoice shows the actual price of the goods and/or services
+        described and all particulars are true and correct.</li>
+      <li>Errors and omissions in this invoice shall be subject to jurisdiction of Ranchi.</li>
+    </ol>
+  </div>
+  <div class="col-xs-4 text-right">
+  <br><br>
+  <p>Authorized Signatory<br>For <strong>Dgsol Infotech Pvt. Ltd.</strong></p>
+  </div>
+</div>

@@ -85,11 +85,9 @@ doc_events = {
 # 		"on_cancel": "method",
 # 		"on_trash": "method"
 #	},
-	"Quotation": {
-		"autoname": "dgsolops.dgsol_operations.doc_autoname.qtn_autoname"
-	},
-	"Sales Order": {
-		"autoname": "dgsolops.dgsol_operations.doc_autoname.so_autoname"
+# Accounting
+	"Journal Entry": {
+		"autoname": "dgsolops.dgsol_operations.doc_autoname.jv_autoname"
 	},
 	"Sales Invoice": {
 		"autoname": "dgsolops.dgsol_operations.doc_autoname.si_autoname"
@@ -99,6 +97,26 @@ doc_events = {
 	},
 	"Payment Entry": {
 		"autoname": "dgsolops.dgsol_operations.doc_autoname.pe_autoname"
+	},
+# Sales
+	"Quotation": {
+		"autoname": "dgsolops.dgsol_operations.doc_autoname.qtn_autoname"
+	},
+	"Sales Order": {
+		"autoname": "dgsolops.dgsol_operations.doc_autoname.so_autoname"
+	},
+# Stock
+	"Stock Entry": {
+		"autoname": "dgsolops.dgsol_operations.doc_autoname.ste_autoname"
+	},
+	"Delivery Note": {
+		"autoname": "dgsolops.dgsol_operations.doc_autoname.dn_autoname"
+	},
+	"Purchase Receipt": {
+		"autoname": "dgsolops.dgsol_operations.doc_autoname.pre_autoname"
+	},
+	"Material Request": {
+		"autoname": "dgsolops.dgsol_operations.doc_autoname.mr_autoname"
 	},
 }
 
