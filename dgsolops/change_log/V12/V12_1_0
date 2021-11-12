@@ -1,0 +1,11 @@
+Custom Autoname functions are added for the following Doctypes
+- Journal Entry
+- Sales Invoice
+- Purchase Invoice
+- Payment Entry
+- Quotation
+- Sales Order
+- Stock Entry
+- Delivery Note
+- Purchase Receipt
+- Material Request
