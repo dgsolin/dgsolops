@@ -8,6 +8,150 @@
   "is_standard": "Yes",
   "javascript": null,
   "json": null,
+  "letter_head": null,
+  "modified": "2020-06-19 17:41:03.132101",
+  "module": "Selling",
+  "name": "Sales Analytics",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Sales Order",
+  "reference_report": null,
+  "report_name": "Sales Analytics",
+  "report_script": null,
+  "report_type": "Script Report",
+  "roles": [
+   {
+    "parent": "Sales Analytics",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock User"
+   },
+   {
+    "parent": "Sales Analytics",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Maintenance User"
+   },
+   {
+    "parent": "Sales Analytics",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts User"
+   },
+   {
+    "parent": "Sales Analytics",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Sales Manager"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2022-02-02 16:26:20.125993",
+  "module": "Regional",
+  "name": "DATEV",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "GL Entry",
+  "reference_report": null,
+  "report_name": "DATEV",
+  "report_script": null,
+  "report_type": "Script Report",
+  "roles": [
+   {
+    "parent": "DATEV",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts User"
+   },
+   {
+    "parent": "DATEV",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts Manager"
+   },
+   {
+    "parent": "DATEV",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Auditor"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2020-05-13 15:27:45.228418",
+  "module": "Stock",
+  "name": "Purchase Order Items To Be Received or Billed",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "prepared_report": 0,
+  "query": "SELECT\n\t`poi_pri`.`purchase_order` as \"Purchase Order:Link/Purchase Order:120\",\n\t`poi_pri`.`status` as \"Status:Data:120\",\n\t`poi_pri`.`transaction_date` as \"Date:Date:100\",\n\t`poi_pri`.`schedule_date` as \"Reqd by Date:Date:110\",\n\t`poi_pri`.`supplier` as \"Supplier:Link/Supplier:120\",\n\t`poi_pri`.`supplier_name` as \"Supplier Name::150\",\n\t`poi_pri`.`item_code` as \"Item Code:Link/Item:120\",\n\t`poi_pri`.`qty` as \"Qty:Float:100\",\n\t`poi_pri`.`base_amount` as  \"Base Amount:Currency:100\",\n\t`poi_pri`.`received_qty` as \"Received Qty:Float:100\",\n\t`poi_pri`.`received_amount` as \"Received Qty Amount:Currency:100\",\n\t`poi_pri`.`qty_to_receive` as \"Qty to Receive:Float:100\",\n\t`poi_pri`.`amount_to_be_received` as \"Amount to Receive:Currency:100\",\n\t`poi_pri`.`billed_amount` as  \"Billed Amount:Currency:100\",\n\t`poi_pri`.`amount_to_be_billed` as  \"Amount To Be Billed:Currency:100\",\n\tSUM(`pii`.`qty`) AS \"Billed Qty:Float:100\",\n\t`poi_pri`.qty - SUM(`pii`.`qty`) AS \"Qty To Be Billed:Float:100\",\n\t`poi_pri`.`warehouse` as \"Warehouse:Link/Warehouse:150\",\n\t`poi_pri`.`item_name` as \"Item Name::150\",\n\t`poi_pri`.`description` as \"Description::200\",\n\t`poi_pri`.`brand` as \"Brand::100\",\n\t`poi_pri`.`project` as \"Project\",\n\t`poi_pri`.`company` as \"Company:Link/Company:\"\nFROM\n\t(SELECT\n\t\t`po`.`name` AS 'purchase_order',\n\t\t`po`.`status`,\n\t\t`po`.`company`,\n\t\t`poi`.`warehouse`,\n\t\t`poi`.`brand`,\n\t\t`poi`.`description`,\n\t\t`po`.`transaction_date`,\n\t\t`poi`.`schedule_date`,\n\t\t`po`.`supplier`,\n\t\t`po`.`supplier_name`,\n\t\t`poi`.`project`,\n\t\t`poi`.`item_code`,\n\t\t`poi`.`item_name`,\n\t\t`poi`.`qty`,\n\t\t`poi`.`base_amount`,\n\t\t`poi`.`received_qty`,\n\t\t(`poi`.billed_amt * ifnull(`po`.conversion_rate, 1)) as billed_amount,\n\t\t(`poi`.base_amount - (`poi`.billed_amt * ifnull(`po`.conversion_rate, 1))) as amount_to_be_billed,\n\t\t`poi`.`qty` - IFNULL(`poi`.`received_qty`, 0) AS 'qty_to_receive',\n\t\t(`poi`.`qty` - IFNULL(`poi`.`received_qty`, 0)) * `poi`.`rate` AS 'amount_to_be_received',\n\t\tSUM(`pri`.`amount`) AS 'received_amount',\n\t\t`poi`.`name` AS 'poi_name',\n\t\t`pri`.`name` AS 'pri_name'\n\tFROM\n\t\t`tabPurchase Order` po\n\t\tLEFT JOIN `tabPurchase Order Item` poi\n\t\tON `poi`.`parent` = `po`.`name`\n\t\tLEFT JOIN `tabPurchase Receipt Item` pri\n\t\tON `pri`.`purchase_order_item` = `poi`.`name`\n\t\t\tAND `pri`.`docstatus`=1\n\tWHERE\n\t\t`po`.`status` not in ('Stopped', 'Closed')\n\t\tAND `po`.`docstatus` = 1\n\t\tAND IFNULL(`poi`.`received_qty`, 0) < IFNULL(`poi`.`qty`, 0)\n\tGROUP BY `poi`.`name`\n\tORDER BY `po`.`transaction_date` ASC\n\t) poi_pri\n\tLEFT JOIN `tabPurchase Invoice Item` pii\n\tON `pii`.`po_detail` = `poi_pri`.`poi_name`\n\t\tAND `pii`.`docstatus`=1\nGROUP BY `poi_pri`.`poi_name`",
+  "ref_doctype": "Purchase Order",
+  "reference_report": null,
+  "report_name": "Purchase Order Items To Be Received or Billed",
+  "report_script": null,
+  "report_type": "Query Report",
+  "roles": [
+   {
+    "parent": "Purchase Order Items To Be Received or Billed",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase Manager"
+   },
+   {
+    "parent": "Purchase Order Items To Be Received or Billed",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Purchase User"
+   },
+   {
+    "parent": "Purchase Order Items To Be Received or Billed",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock User"
+   },
+   {
+    "parent": "Purchase Order Items To Be Received or Billed",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock Manager"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": null,
   "letter_head": "",
   "modified": "2017-06-23 04:46:43.209008",
   "module": "Manufacturing",
@@ -1802,56 +1946,6 @@
   ]
  },
  {
-  "add_total_row": 0,
-  "disable_prepared_report": 0,
-  "disabled": 0,
-  "docstatus": 0,
-  "doctype": "Report",
-  "is_standard": "Yes",
-  "javascript": null,
-  "json": null,
-  "letter_head": null,
-  "modified": "2019-05-24 05:37:02.866139",
-  "module": "Selling",
-  "name": "Sales Analytics",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "prepared_report": 0,
-  "query": null,
-  "ref_doctype": "Sales Order",
-  "reference_report": null,
-  "report_name": "Sales Analytics",
-  "report_script": null,
-  "report_type": "Script Report",
-  "roles": [
-   {
-    "parent": "Sales Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "Stock User"
-   },
-   {
-    "parent": "Sales Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "Maintenance User"
-   },
-   {
-    "parent": "Sales Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "Accounts User"
-   },
-   {
-    "parent": "Sales Analytics",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "Sales Manager"
-   }
-  ]
- },
- {
   "add_total_row": 1,
   "disable_prepared_report": 0,
   "disabled": 0,
@@ -2847,50 +2941,6 @@
   "javascript": null,
   "json": null,
   "letter_head": null,
-  "modified": "2020-03-07 21:39:00.194917",
-  "module": "Regional",
-  "name": "DATEV",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "prepared_report": 0,
-  "query": null,
-  "ref_doctype": "GL Entry",
-  "reference_report": null,
-  "report_name": "DATEV",
-  "report_script": null,
-  "report_type": "Script Report",
-  "roles": [
-   {
-    "parent": "DATEV",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "Accounts User"
-   },
-   {
-    "parent": "DATEV",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "Accounts Manager"
-   },
-   {
-    "parent": "DATEV",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "Auditor"
-   }
-  ]
- },
- {
-  "add_total_row": 0,
-  "disable_prepared_report": 0,
-  "disabled": 0,
-  "docstatus": 0,
-  "doctype": "Report",
-  "is_standard": "Yes",
-  "javascript": null,
-  "json": null,
-  "letter_head": null,
   "modified": "2019-05-01 13:00:26.545278",
   "module": "Accounts",
   "name": "Inactive Sales Items",
@@ -3283,56 +3333,6 @@
  },
  {
   "add_total_row": 0,
-  "disable_prepared_report": 0,
-  "disabled": 0,
-  "docstatus": 0,
-  "doctype": "Report",
-  "is_standard": "Yes",
-  "javascript": null,
-  "json": null,
-  "letter_head": null,
-  "modified": "2019-09-21 15:19:55.710578",
-  "module": "Stock",
-  "name": "Purchase Order Items To Be Received or Billed",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "prepared_report": 0,
-  "query": "SELECT\n\t`poi_pri`.`purchase_order` as \"Purchase Order:Link/Purchase Order:120\",\n\t`poi_pri`.`status` as \"Status:Data:120\",\n\t`poi_pri`.`transaction_date` as \"Date:Date:100\",\n\t`poi_pri`.`schedule_date` as \"Reqd by Date:Date:110\",\n\t`poi_pri`.`supplier` as \"Supplier:Link/Supplier:120\",\n\t`poi_pri`.`supplier_name` as \"Supplier Name::150\",\n\t`poi_pri`.`item_code` as \"Item Code:Link/Item:120\",\n\t`poi_pri`.`qty` as \"Qty:Float:100\",\n\t`poi_pri`.`base_amount` as  \"Base Amount:Currency:100\",\n\t`poi_pri`.`received_qty` as \"Received Qty:Float:100\",\n\t`poi_pri`.`received_amount` as \"Received Qty Amount:Currency:100\",\n\t`poi_pri`.`qty_to_receive` as \"Qty to Receive:Float:100\",\n\t`poi_pri`.`amount_to_be_received` as \"Amount to Receive:Currency:100\",\n\t`poi_pri`.`billed_amount` as  \"Billed Amount:Currency:100\",\n\t`poi_pri`.`amount_to_be_billed` as  \"Amount To Be Billed:Currency:100\",\n\tSUM(`pii`.`qty`) AS \"Billed Qty:Float:100\",\n\t`poi_pri`.qty - SUM(`pii`.`qty`) AS \"Qty To Be Billed:Float:100\",\n\t`poi_pri`.`warehouse` as \"Warehouse:Link/Warehouse:150\",\n\t`poi_pri`.`item_name` as \"Item Name::150\",\n\t`poi_pri`.`description` as \"Description::200\",\n\t`poi_pri`.`brand` as \"Brand::100\",\n\t`poi_pri`.`project` as \"Project\",\n\t`poi_pri`.`company` as \"Company:Link/Company:\"\nFROM\n\t(SELECT\n\t\t`po`.`name` AS 'purchase_order',\n\t\t`po`.`status`,\n\t\t`po`.`company`,\n\t\t`poi`.`warehouse`,\n\t\t`poi`.`brand`,\n\t\t`poi`.`description`,\n\t\t`po`.`transaction_date`,\n\t\t`poi`.`schedule_date`,\n\t\t`po`.`supplier`,\n\t\t`po`.`supplier_name`,\n\t\t`poi`.`project`,\n\t\t`poi`.`item_code`,\n\t\t`poi`.`item_name`,\n\t\t`poi`.`qty`,\n\t\t`poi`.`base_amount`,\n\t\t`poi`.`received_qty`,\n\t\t(`poi`.billed_amt * ifnull(`po`.conversion_rate, 1)) as billed_amount,\n\t\t(`poi`.base_amount - (`poi`.billed_amt * ifnull(`po`.conversion_rate, 1))) as amount_to_be_billed,\n\t\t`poi`.`qty` - IFNULL(`poi`.`received_qty`, 0) AS 'qty_to_receive',\n\t\t(`poi`.`qty` - IFNULL(`poi`.`received_qty`, 0)) * `poi`.`rate` AS 'amount_to_be_received',\n\t\tSUM(`pri`.`amount`) AS 'received_amount',\n\t\t`poi`.`name` AS 'poi_name',\n\t\t`pri`.`name` AS 'pri_name'\n\tFROM\n\t\t`tabPurchase Order` po\n\t\tLEFT JOIN `tabPurchase Order Item` poi\n\t\tON `poi`.`parent` = `po`.`name`\n\t\tLEFT JOIN `tabPurchase Receipt Item` pri\n\t\tON `pri`.`purchase_order_item` = `poi`.`name`\n\t\t\tAND `pri`.`docstatus`=1\n\tWHERE\n\t\t`po`.`status` not in ('Stopped', 'Closed')\n\t\tAND `po`.`docstatus` = 1\n\t\tAND IFNULL(`poi`.`received_qty`, 0) < IFNULL(`poi`.`qty`, 0)\n\tGROUP BY `poi`.`name`\n\tORDER BY `po`.`transaction_date` ASC\n\t) poi_pri\n\tLEFT JOIN `tabPurchase Invoice Item` pii\n\tON `pii`.`po_detail` = `poi_pri`.`poi_name`\n\t\tAND `pii`.`docstatus`=1\nGROUP BY `poi_pri`.`poi_name`",
-  "ref_doctype": "Purchase Order",
-  "reference_report": null,
-  "report_name": "Purchase Order Items To Be Received or Billed",
-  "report_script": null,
-  "report_type": "Query Report",
-  "roles": [
-   {
-    "parent": "Purchase Order Items To Be Received or Billed",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "Purchase Manager"
-   },
-   {
-    "parent": "Purchase Order Items To Be Received or Billed",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "Purchase User"
-   },
-   {
-    "parent": "Purchase Order Items To Be Received or Billed",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "Stock User"
-   },
-   {
-    "parent": "Purchase Order Items To Be Received or Billed",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "Stock Manager"
-   }
-  ]
- },
- {
-  "add_total_row": 0,
   "disable_prepared_report": 1,
   "disabled": 0,
   "docstatus": 0,
@@ -3651,44 +3651,6 @@
    },
    {
     "parent": "Customer Credit Balance",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "Accounts Manager"
-   }
-  ]
- },
- {
-  "add_total_row": 1,
-  "disable_prepared_report": 0,
-  "disabled": 0,
-  "docstatus": 0,
-  "doctype": "Report",
-  "is_standard": "Yes",
-  "javascript": null,
-  "json": null,
-  "letter_head": null,
-  "modified": "2018-08-14 15:24:41.395557",
-  "module": "Stock",
-  "name": "Stock Balance",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "prepared_report": 1,
-  "query": null,
-  "ref_doctype": "Stock Ledger Entry",
-  "reference_report": null,
-  "report_name": "Stock Balance",
-  "report_script": null,
-  "report_type": "Script Report",
-  "roles": [
-   {
-    "parent": "Stock Balance",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "Stock User"
-   },
-   {
-    "parent": "Stock Balance",
     "parentfield": "roles",
     "parenttype": "Report",
     "role": "Accounts Manager"
@@ -4789,44 +4751,6 @@
     "parentfield": "roles",
     "parenttype": "Report",
     "role": "System Manager"
-   }
-  ]
- },
- {
-  "add_total_row": 0,
-  "disable_prepared_report": 0,
-  "disabled": 0,
-  "docstatus": 0,
-  "doctype": "Report",
-  "is_standard": "Yes",
-  "javascript": null,
-  "json": null,
-  "letter_head": null,
-  "modified": "2017-02-24 20:12:22.464240",
-  "module": "Accounts",
-  "name": "Gross Profit",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "prepared_report": 0,
-  "query": null,
-  "ref_doctype": "Sales Invoice",
-  "reference_report": null,
-  "report_name": "Gross Profit",
-  "report_script": null,
-  "report_type": "Script Report",
-  "roles": [
-   {
-    "parent": "Gross Profit",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "Accounts Manager"
-   },
-   {
-    "parent": "Gross Profit",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "Accounts User"
    }
   ]
  },
@@ -7266,6 +7190,82 @@
     "parentfield": "roles",
     "parenttype": "Report",
     "role": "Stock User"
+   }
+  ]
+ },
+ {
+  "add_total_row": 1,
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2020-04-30 13:46:14.680354",
+  "module": "Stock",
+  "name": "Stock Balance",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "prepared_report": 1,
+  "query": "",
+  "ref_doctype": "Stock Ledger Entry",
+  "reference_report": null,
+  "report_name": "Stock Balance",
+  "report_script": null,
+  "report_type": "Script Report",
+  "roles": [
+   {
+    "parent": "Stock Balance",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Stock User"
+   },
+   {
+    "parent": "Stock Balance",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts Manager"
+   }
+  ]
+ },
+ {
+  "add_total_row": 0,
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2021-08-19 18:57:07.468202",
+  "module": "Accounts",
+  "name": "Gross Profit",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Sales Invoice",
+  "reference_report": null,
+  "report_name": "Gross Profit",
+  "report_script": null,
+  "report_type": "Script Report",
+  "roles": [
+   {
+    "parent": "Gross Profit",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts Manager"
+   },
+   {
+    "parent": "Gross Profit",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts User"
    }
   ]
  }

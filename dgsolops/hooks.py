@@ -118,6 +118,10 @@ doc_events = {
 	"Material Request": {
 		"autoname": "dgsolops.dgsol_operations.doc_autoname.mr_autoname"
 	},
+# Asset
+	"Asset": {
+		"autoname": "dgsolops.dgsol_operations.doc_autoname.asset_autoname"
+	},
 }
 
 # Scheduled Tasks
