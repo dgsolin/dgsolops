@@ -167,4 +167,4 @@ doc_events = {
 #
 # Fixtures
 #
-fixtures = ["Custom Field", "Custom Script", "Property Setter", "Print Format", "Report", "Workflow", "Workflow State", "Workflow Action"]
+fixtures = ["Custom Field", "Client Script", "Server Script", "Property Setter", "Print Format", "Report", "Workflow", "Workflow State", "Workflow Action"]
