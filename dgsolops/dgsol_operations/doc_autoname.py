@@ -13,7 +13,7 @@ from frappe.model.naming import make_autoname
 from erpnext.accounts.utils import get_fiscal_year
 
 def get_fy_abbr(date,company):
-	fy = get_fiscal_year(date, company)[0]
+	fy = get_fiscal_year(date)[0]
 	fy_start_end_date = frappe.db.get_value("Fiscal Year", str(fy), ["year_start_date","year_end_date"])
 
 	fy_start_year = fy_start_end_date[0].year
