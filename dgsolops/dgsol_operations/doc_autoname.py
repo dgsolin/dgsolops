@@ -116,7 +116,7 @@ def mr_autoname(self, method):
 def asset_autoname(self, method):
 	fy_abbr = get_fy_abbr(self.available_for_use_date,self.company)
 
-	head_abbr = "DIPL/"
+	head_abbr = "DIA/"
 
 	self.name = make_autoname(head_abbr + fy_abbr +'/.####')
 
